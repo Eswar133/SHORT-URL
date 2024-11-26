@@ -2,8 +2,185 @@
 <html lang="en">
   <head>
     <style>
+      /* General Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1abc9c, #3498db);
+        color: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+      h1 {
+        margin: 20px 0;
+        font-size: 3rem;
+        text-align: center;
+        animation: fadeInDown 1s ease-in-out;
+        color: #ffffff;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      p {
+        font-size: 1.2rem;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 10px 20px;
+        border-radius: 5px;
+        display: inline-block;
+        animation: fadeIn 1.5s ease-in-out;
+      }
+
+      /* Form Styles */
+      form {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 10px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        animation: slideInUp 1s ease-out;
+        max-width: 500px;
+        width: 90%;
+      }
+
+      form label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #ffffff;
+      }
+
+      form input {
+        width: 100%;
+        padding: 12px 15px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+
+      form button {
+        width: 100%;
+        padding: 12px 15px;
+        border: none;
+        border-radius: 5px;
+        background: #e74c3c;
+        color: #ffffff;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+      }
+
+      form button:hover {
+        background: #c0392b;
+        transform: scale(1.05);
+      }
+
+      /* Table Styles */
+      table {
+        width: 90%;
+        margin-top: 40px;
+        border-collapse: collapse;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        animation: fadeInUp 1.5s ease-out;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      table th,
+      table td {
+        padding: 15px;
+        text-align: center;
+        color: #ffffff;
+        font-size: 1rem;
+      }
+
+      table th {
+        background: rgba(0, 0, 0, 0.2);
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      table tr:nth-child(even) {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      table tr:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        form {
+          padding: 15px;
+        }
+
+        table th,
+        table td {
+          font-size: 0.9rem;
+          padding: 10px;
+        }
       }
     </style>
     <meta charset="UTF-8" />
@@ -24,14 +201,16 @@
         <button type="submit">Generate</button>
       </form>
     </div>
-    <div style="margin-top: 30px">
+    <div>
       <% if (locals.urls) { %>
       <table>
         <thead>
-          <th>S. No</th>
-          <th>ShortID</th>
-          <th>Redirect</th>
-          <th>Clicks</th>
+          <tr>
+            <th>S. No</th>
+            <th>ShortID</th>
+            <th>Redirect</th>
+            <th>Clicks</th>
+          </tr>
         </thead>
         <tbody>
           <% urls.forEach((url, index) => { %>
